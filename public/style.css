@@ -1,0 +1,39 @@
+/* ---------- */
+/* グラフデザイン */
+.skill-funnel-container {
+  display: flex;
+  align-items: stretch;
+  gap: 2rem;       /* 図形と文字の間隔 */
+  height: 300px;   /* 全体の高さ */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.skill-triangle {
+  height: 100%;
+  width: 100px;    /* SVGの比率に合わせる */
+  overflow: visible;
+}
+
+.skill-labels {
+  position: relative;
+  width: 200px;
+}
+
+.skill-label {
+  position: absolute;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #1f2937;
+  white-space: nowrap;
+  /* topの指定に対して要素の中心が来るように調整 */
+  transform: translateY(-50%); 
+}
+/* ---------- */
+
+
+/* ---------- */
+/* ボタンのデザイン */
+.btn-ref {
+  margin-left: 10px; /* ここの数値を変更して調整します */
+}
+/* ---------- */

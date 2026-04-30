@@ -26,6 +26,7 @@
 
     <div class="AboutClass">
       <h1>
+        <!-- ここアニメーション入れたい -->
         <div class="name">Hello I am Kosei Kawaguchi</div>
         <div class="aka">a.k.a. KKTeX</div>
       </h1>
@@ -41,10 +42,20 @@
           <li>東京大学理科一類前期教養学部所属</li>
         </ul>
         <h2>Skills</h2>
-        <ul>
-          <li>Mastered Language: LaTeX, expl3, Lua</li>
-          <li>Learning Language: TeX, Type Script, Rust</li>
-        </ul>
+        <div class="skill-funnel-container">
+          <svg viewBox="0 0 100 300" class="skill-triangle">
+            <defs>
+              <linearGradient id="funnelGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#ef4444" /> <stop offset="100%" stop-color="#3b82f6" /> </linearGradient>
+            </defs>
+            
+            <polygon points="0,0 100,0 50,300" fill="url(#funnelGradient)" />
+            
+            <polygon points="0,0 100,0 50,300" fill="none" stroke="#1f2937" stroke-width="2" stroke-linejoin="round" />
+          </svg>
+
+          <div class="skill-labels" id="skill-labels"></div>
+        </div>
       </section>
     </div>
   
@@ -52,6 +63,17 @@
       <section id="about-sec">
         <h2>My TeX works</h2>
         TeXに関する私の成果物は、CTAN（Comprehensive TeX Archive Network）に上がっているもののほか、私のGitHubリポジトリにあるものがあります。
+
+        <h3>Package on CTAN</h3>
+        <ul>
+          <li>keisennote<button type="button" class="btn-ref" id="keisennote-button">参照</button></li>
+          <li>gckanbun<button type="button" class="btn-ref" id="gckanbun-button">参照</button></li>
+          <li>kkluaverb<button type="button" class="btn-ref" id="kkluaverb-button">参照</button></li>
+          <li>luwa-ul<button type="button" class="btn-ref" id="luwa-ul-button">参照</button></li>
+          <li>modernruler<button type="button" class="btn-ref" id="modernruler-button">参照</button></li>
+          <li>kkran<button type="button" class="btn-ref" id="kkran-button">参照</button></li>
+          <li>kksymbols<button type="button" class="btn-ref" id="kksymbols-button">参照</button></li>
+        </ul>
       </section>
     </div>
     
