@@ -32,52 +32,25 @@ if (container) {
 
 //----------
 // パッケージへのリンクボタン
-const keisennoteButton = document.getElementById('keisennote-button') as HTMLButtonElement | null;
-if (keisennoteButton) {
-  keisennoteButton.addEventListener('click', () => {
-    window.open('https://ctan.org/pkg/keisennote', '_blank');
-  })
-}
+// 1. パッケージ名のリストを作る
+const ctanPackages = [
+  'keisennote',
+  'gckanbun',
+  'kkluaverb',
+  'luwa-ul',
+  'modernruler',
+  'kkran',
+  'kksymbols'
+];
 
-const gckanbunButton = document.getElementById('gckanbun-button') as HTMLButtonElement | null;
-if (gckanbunButton) {
-  gckanbunButton.addEventListener('click', () => {
-    window.open('https://ctan.org/pkg/gckanbun', '_blank');
-  })
-}
-
-const kkluaverbButton = document.getElementById('kkluaverb-button') as HTMLButtonElement | null;
-if (kkluaverbButton) {
-  kkluaverbButton.addEventListener('click', () => {
-    window.open('https://ctan.org/pkg/kkluaverb', '_blank');
-  })
-}
-
-const luwaulButton = document.getElementById('luwa-ul-button') as HTMLButtonElement | null;
-if (luwaulButton) {
-  luwaulButton.addEventListener('click', () => {
-    window.open('https://ctan.org/pkg/luwa-ul', '_blank');
-  })
-}
-
-const modernrulerButton = document.getElementById('modernruler-button') as HTMLButtonElement | null;
-if (modernrulerButton) {
-  modernrulerButton.addEventListener('click', () => {
-    window.open('https://ctan.org/pkg/modernruler', '_blank');
-  })
-}
-
-const kkranButton = document.getElementById('kkran-button') as HTMLButtonElement | null;
-if (kkranButton) {
-  kkranButton.addEventListener('click', () => {
-    window.open('https://ctan.org/pkg/kkran', '_blank');
-  })
-}
-
-const kksymbolsButton = document.getElementById('kksymbols-button') as HTMLButtonElement | null;
-if (kksymbolsButton) {
-  kksymbolsButton.addEventListener('click', () => {
-    window.open('https://ctan.org/pkg/kksymbols', '_blank');
-  })
-}
+// 2. リストをループして、一気にイベントを登録する
+ctanPackages.forEach(pkgName => {
+  const button = document.getElementById(`${pkgName}-button`) as HTMLButtonElement | null;
+  
+  if (button) {
+    button.addEventListener('click', () => {
+      window.open(`https://ctan.org/pkg/${pkgName}`, '_blank');
+    });
+  }
+});
 //----------
