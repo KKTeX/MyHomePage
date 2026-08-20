@@ -13,8 +13,10 @@ python3 build/assemble.py
 ```
 
 `convert.py` strips the design-canvas runtime and rewrites its constructs into
-plain HTML; `assemble.py` wraps the result in the real `<head>` and writes
-`public/index.html`. Both assert on every substitution they expect to make, so
+plain HTML, writing three files: `body.html` plus `body.html.style` and
+`body.html.hover` alongside it. `assemble.py` reads all three, wraps them in the
+real `<head>` and writes `public/index.html`. None of the three are committed,
+so `assemble.py` cannot be run until `convert.py` has been. Both assert on every substitution they expect to make, so
 a canvas export whose structure has drifted fails loudly instead of silently
 producing a broken page.
 
@@ -36,6 +38,10 @@ animation — the failure the handoff notes warn about.
   responsive overrides. The design's own values stay in inline styles, so these
   use `!important` and select on inline-style substrings (`[style*="…"]`) where
   a type role has no class of its own.
+- `build/assemble.py` — the `<head>`: meta, Open Graph, the font link, the
+  JSON-LD, and the Google Search Console verification tag. **That verification
+  tag must survive any regeneration** — removing it un-verifies the Search
+  Console property. See the root [README](../README.md#do-not-remove).
 - `public/site.js` — language toggle, progress bar, typewriter, scroll reveals.
 - `build/og.html` — source for the 1200x630 social card. To re-render:
   ```
