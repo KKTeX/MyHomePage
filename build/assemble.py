@@ -70,6 +70,63 @@ head = f'''<meta charset="utf-8">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&amp;family=Cormorant+Garamond:wght@400;500&amp;family=Jost:wght@500&amp;family=Shippori+Mincho:wght@400;500&amp;family=JetBrains+Mono:wght@300;400;500&amp;display=swap" rel="stylesheet">
 
+<script type="application/ld+json">
+{{
+  "@context": "https://schema.org",
+  "@graph": [
+    {{
+      "@type": "Person",
+      "@id": "{SITE}/#person",
+      "name": "川口 晃世",
+      "alternateName": ["KKTeX", "Kosei Kawaguchi"],
+      "familyName": "川口",
+      "givenName": "晃世",
+      "url": "{SITE}/",
+      "image": "{SITE}/uploads/og.jpg",
+      "description": "TeXで組版の道具をつくっています。CTAN公式パッケージ7本の著作者、株式会社Fermion共同創業者、東京大学理科一類1年。",
+      "disambiguatingDescription": "Author of seven official packages on CTAN, co-founder of Fermion Inc., first-year student at the University of Tokyo. Currently writing a book on expl3.",
+      "knowsAbout": ["TeX", "LaTeX", "expl3", "組版", "typesetting"],
+      "affiliation": {{
+        "@type": "CollegeOrUniversity",
+        "name": "東京大学",
+        "alternateName": "University of Tokyo"
+      }},
+      "worksFor": {{
+        "@type": "Organization",
+        "name": "株式会社Fermion",
+        "alternateName": "Fermion Inc.",
+        "foundingDate": "2026",
+        "founder": [
+          {{"@id": "{SITE}/#person"}},
+          {{"@type": "Person", "name": "幸川卓実", "alternateName": "Takumi Yukikawa"}}
+        ]
+      }},
+      "performerIn": {{
+        "@type": "Event",
+        "name": "TeXConf 2026",
+        "startDate": "2026-11-21"
+      }},
+      "sameAs": [
+        "https://ctan.org/author/kktex",
+        "https://github.com/KKTeX",
+        "https://qiita.com/KKTeX",
+        "https://x.com/KKTeX_LaTeX3"
+      ]
+    }},
+    {{
+      "@type": "WebSite",
+      "@id": "{SITE}/#website",
+      "url": "{SITE}/",
+      "name": "川口 晃世 / KKTeX — Portfolio",
+      "description": "TeXで組版の道具をつくっています。CTAN公式パッケージ7本の著作者、株式会社Fermion共同創業者、東京大学理科一類1年。",
+      "inLanguage": ["ja", "en"],
+      "author": {{"@id": "{SITE}/#person"}},
+      "publisher": {{"@id": "{SITE}/#person"}},
+      "copyrightHolder": {{"@id": "{SITE}/#person"}}
+    }}
+  ]
+}}
+</script>
 <style>
 {base_css}
 
