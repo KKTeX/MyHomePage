@@ -1,83 +1,390 @@
-<!-- ref: https://tashi.design/ -->
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KKTeX Home Page</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playwrite+DE+SAS&family=Noto+Sans+JP&family=Cardo&family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>川口 晃世 / KKTeX — Portfolio</title>
+<meta name="description" content="TeXで組版の道具をつくっています。CTAN公式パッケージ7本の著作者、株式会社Fermion共同創業者、東京大学理科一類1年。">
+<meta name="author" content="川口 晃世 (KKTeX)">
+<meta name="theme-color" content="#0E0E0E">
+<link rel="canonical" href="https://kktexportfolio.klassikore.com/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="KKTeX">
+<meta property="og:url" content="https://kktexportfolio.klassikore.com/">
+<meta property="og:title" content="川口 晃世 / KKTeX — Portfolio">
+<meta property="og:description" content="TeXで組版の道具をつくっています。CTAN公式パッケージ7本の著作者、株式会社Fermion共同創業者、東京大学理科一類1年。">
+<meta property="og:image" content="https://kktexportfolio.klassikore.com/uploads/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Kosei Kawaguchi (KKTeX) — author of seven packages on CTAN, co-founder of Fermion Inc., first-year student at the University of Tokyo.">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:locale:alternate" content="en_US">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@KKTeX_LaTeX3">
+<meta name="twitter:creator" content="@KKTeX_LaTeX3">
+<meta name="twitter:title" content="川口 晃世 / KKTeX — Portfolio">
+<meta name="twitter:description" content="TeXで組版の道具をつくっています。CTAN公式パッケージ7本の著作者、株式会社Fermion共同創業者、東京大学理科一類1年。">
+<meta name="twitter:image" content="https://kktexportfolio.klassikore.com/uploads/og.jpg">
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="uploads/icon-512.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&amp;family=Zen+Old+Mincho:wght@400;500;700&amp;family=EB+Garamond:ital,wght@0,400;0,500;1,400&amp;family=JetBrains+Mono:wght@300;400;500&amp;display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#0E0E0E;color:#F2EFE8;font-family:'EB Garamond','Zen Old Mincho',serif;-webkit-font-smoothing:antialiased}
+a{color:#E8452A;text-decoration:none}
+a:hover{color:#F26B4F}
+::selection{background:#E8452A;color:#F2EFE8}
+:root{--ease-expo:cubic-bezier(.16,1,.3,1);--ease-out:cubic-bezier(.19,1,.22,1)}
+h1,h2,h3{text-wrap:balance}
+[data-mask]{display:block;overflow:clip;padding-bottom:.14em}
+[data-mask] > .m{display:block}
+@keyframes mask-rise{from{transform:translateY(112%)}to{transform:translateY(0)}}
+@media (prefers-reduced-motion:no-preference){
+  [data-mask="now"] > .m{animation:mask-rise 1200ms var(--ease-expo) both;animation-delay:var(--d,0ms)}
+}
+[data-mask="view"].armed > .m{transform:translateY(112%)}
+[data-mask="view"].armed.is-in > .m{transform:translateY(0);transition:transform 1050ms var(--ease-expo)}
+[data-rule].armed{transform:scaleX(0);transform-origin:0 50%}
+[data-rule].armed.is-in{transform:scaleX(1);transition:transform 900ms var(--ease-expo)}
+[data-enter].armed > div:not([data-band]){clip-path:inset(16% 0 0 0);transform:translateY(56px);opacity:.001}
+[data-enter].armed.is-in > div:not([data-band]){clip-path:inset(0 0 0 0);transform:none;opacity:1;transition:clip-path 1250ms var(--ease-expo),transform 1250ms var(--ease-expo),opacity 800ms linear}
+[data-band]{position:absolute;left:0;right:0;top:0;height:3px;background:#E8452A;transform-origin:0 50%}
+[data-band].armed{transform:scaleX(0)}
+[data-band].armed.is-in{transform:scaleX(1);transition:transform 1100ms var(--ease-expo)}
+[data-card]{container-type:inline-size}
+nav a,nav button,header a,section a{transition:color 260ms var(--ease-out),background-color 260ms var(--ease-out),border-color 260ms var(--ease-out),opacity 260ms var(--ease-out)}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+
+/* ── hover states ───────────────────────────────────────────────────────────
+   The prototype carried these on a style-hover attribute its runtime read;
+   here they are ordinary :hover rules. !important because the base values are
+   inline styles. */
+.hv1:hover{background:#E8452A!important;color:#F2EFE8!important}
+.hv2:hover{background:#E8452A!important;border-color:#E8452A!important;color:#F2EFE8!important}
+.hv3:hover{color:#E8452A!important}
+.hv4:hover{background:#0E0E0E!important;color:#F2EFE8!important}
+.hv5:hover{background:#171614!important}
+.hv6:hover{background:#F2EFE8!important;color:#0E0E0E!important}
+.hv7:hover{background:#0E0E0E!important;color:#E8452A!important}
+/* ── language ───────────────────────────────────────────────────────────────
+   Both languages ship in the HTML; CSS decides which one is shown. Nothing is
+   added to or removed from the DOM on a switch, so no reveal can get stranded
+   mid-animation — the failure mode the handoff notes warn about. */
+html[lang="ja"] [data-l="en"],
+html[lang="en"] [data-l="ja"]{display:none!important}
+
+/* sticky nav is ~45px tall; keep anchor targets clear of it */
+header[id],section[id]{scroll-margin-top:56px}
+
+#langToggle{font-family:'JetBrains Mono',monospace}
+img{max-width:100%}
+
+/* ── responsive ─────────────────────────────────────────────────────────────
+   The prototype was built desktop-only. Every type size is already clamp() and
+   cards are sized in cqw, so only the column structure and gutters need to
+   fold. Overrides use !important because the design's values live in inline
+   style attributes. */
+@media (max-width:900px){
+  [data-herogrid]{grid-template-columns:minmax(0,1fr)!important;gap:40px!important;align-items:start!important}
+  [data-aboutgrid]{grid-template-columns:minmax(0,1fr)!important}
+}
+@media (max-width:760px){
+  [data-tlrow]{grid-template-columns:minmax(0,1fr)!important;gap:8px!important;align-items:start!important}
+  nav{padding:12px 20px!important}
+  header[id]{padding-left:20px!important;padding-right:20px!important}
+  section{padding-left:20px!important;padding-right:20px!important}
+  /* the anchor row scrolls sideways; the language toggle stays put */
+  [data-navlinks]{min-width:0;gap:14px!important}
+  [data-navscroll]{min-width:0;overflow-x:auto;overflow-y:hidden;gap:16px!important;
+                   scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  [data-navscroll]::-webkit-scrollbar{display:none}
+  [data-navscroll] > a{flex:none;white-space:nowrap}
+  #langToggle{flex:none}
+}
+@media (max-width:520px){
+  [data-cardgrid]{grid-template-columns:minmax(0,1fr)!important}
+  [data-stat]{padding-left:0!important}
+}
+
+/* The source block is typed in one character at a time. Reserve its finished
+   height so the hero does not grow under the reader for the ~4s that takes —
+   and so the stats row below it is measured in its settled position. */
+pre{min-height:244px}
+</style>
 </head>
 <body>
-  <header>
-    <!-- ここはページ上部のbarに配置する -->
-    <nav>
-      <ul class="BarMenu">
-        <li>TeX Works</li>
-        <li>Apps</li>
-      </ul>
-    </nav>
-    <h1 id="HomeTitle" class="BarTitle">
-      KKTeX Home
-    </h1>
+<div style="position:relative;overflow:clip;background:#0E0E0E">
+<div id="bar" style="position:fixed;top:0;left:0;height:3px;width:0%;background:#E8452A;z-index:40"></div>
 
-    <div class="AboutClass">
-      <h1>
-        <!-- ここアニメーション入れたい -->
-        <div class="name">Hello I am Kosei Kawaguchi</div>
-        <div class="aka">a.k.a. KKTeX</div>
+<nav style="position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px 32px;background:#0E0E0E;border-bottom:1px solid rgba(242,239,232,.18)">
+  <a href="#top" style="font:600 15px/1 Archivo,sans-serif;letter-spacing:.02em;color:#F2EFE8">KKTeX</a>
+  <div data-navlinks style="display:flex;align-items:center;gap:22px;font:500 11px/1 Archivo,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#8B867D">
+    <div data-navscroll style="display:flex;align-items:center;gap:22px"><a href="#about" style="color:#8B867D">About</a>
+    <a href="#timeline" style="color:#8B867D">Timeline</a>
+    <a href="#packages" style="color:#8B867D">Packages</a>
+    <a href="#products" style="color:#8B867D">Products</a>
+    <a href="#writing" style="color:#8B867D">Writing</a></div>
+    <button id="langToggle" type="button" aria-label="Switch language" style="font:500 11px/1 'JetBrains Mono',monospace;letter-spacing:.14em;color:#0E0E0E;background:#F2EFE8;border:0;padding:7px 11px;cursor:pointer" class="hv1">EN</button>
+  </div>
+</nav>
+
+<header id="top" style="position:relative;z-index:1;padding:56px 32px 40px;border-bottom:1px solid rgba(242,239,232,.18)">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;gap:24px;font:500 10.5px/1 Archivo,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#8B867D">
+    <div>Portfolio — 2026</div>
+    <div>Tokyo, Japan</div>
+  </div>
+  <div data-herogrid style="margin-top:40px;display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,.85fr);gap:48px;align-items:end">
+    <div style="container-type:inline-size">
+      <h1 style="margin:0;font:700 clamp(40px,10.6cqw,168px)/.9 Archivo,sans-serif;letter-spacing:-.03em;color:#F2EFE8">
+        <span data-mask="now" style="--d:60ms"><span class="m">KAWAGUCHI</span></span>
+        <span data-mask="now" style="--d:180ms"><span class="m">KOSEI</span></span>
       </h1>
+      <div data-reveal="1" style="margin-top:14px;font:400 clamp(19px,3.6cqw,40px)/1 'Zen Old Mincho',serif;letter-spacing:.1em;color:#E8452A">川口 晃世</div>
+      <div data-rule="1" style="margin-top:28px;height:1px;background:#E8452A"></div>
+      
+        <p data-l="ja"  data-reveal="1" style="margin:26px 0 0;max-width:26em;font:400 clamp(16px,1.6vw,19px)/2.05 'Zen Old Mincho',serif;color:#CFCBC2;text-wrap:pretty">TeXで組版の道具をつくっています。CTAN公式パッケージ7本の著作者、株式会社Fermion共同創業者、東京大学理科一類1年。</p>
+      
+      
+        <p data-l="en"  data-reveal="1" style="margin:26px 0 0;max-width:28em;font:400 clamp(17px,1.7vw,20px)/1.85 'EB Garamond',serif;color:#CFCBC2;text-wrap:pretty">I build typesetting tools in TeX. Author of seven packages on CTAN, co-founder of Fermion Inc., first-year student at the University of Tokyo.</p>
+      
     </div>
-  </header>
+    <div style="display:flex;flex-direction:column;gap:22px">
+      <div style="display:flex;align-items:flex-end;gap:18px">
+        <img src="uploads/icon-512.jpg" alt="KKTeX" style="width:112px;height:112px;flex:none;object-fit:cover;border:1px solid rgba(242,239,232,.2)">
+        <div style="font:500 10.5px/1.9 Archivo,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#8B867D">KKTeX<br>@KKTeX_LaTeX3</div>
+      </div>
+      <div style="border:1px solid rgba(242,239,232,.18);padding:18px 20px">
+        <div style="font:500 10px/1 Archivo,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#8B867D">source</div>
+        <pre style="margin:14px 0 0;font:400 12.5px/1.95 'JetBrains Mono',monospace;color:#F2EFE8;white-space:pre-wrap;word-break:break-word"><span id="typed">\documentclass[a4paper]{jsarticle}
+\usepackage{KKsymbols,KKran}
+\usepackage{gckanbun}
 
-  <main>
-    <div class="about-design">
-      <section id="about-sec">
-        <h2>About Me</h2>
-        <ul>
-          <li>開成中学・高等学校卒業</li>
-          <li>東京大学理科一類前期教養学部所属</li>
-        </ul>
-        <h2>Skills</h2>
-        <div class="skill-funnel-container">
-          <svg viewBox="0 0 100 300" class="skill-triangle">
-            <defs>
-              <linearGradient id="funnelGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#ef4444" /> <stop offset="100%" stop-color="#3b82f6" /> </linearGradient>
-            </defs>
-            
-            <polygon points="0,0 100,0 50,300" fill="url(#funnelGradient)" />
-            
-            <polygon points="0,0 100,0 50,300" fill="none" stroke="#1f2937" stroke-width="2" stroke-linejoin="round" />
-          </svg>
+\author{川口 晃世 (KKTeX)}
+\title{Portfolio}
 
-          <div class="skill-labels" id="skill-labels"></div>
-        </div>
-      </section>
+\begin{document}
+\maketitle
+\end{document}</span><span style="color:#E8452A">▍</span></pre>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <a href="https://ctan.org/author/kktex" style="font:400 12px/1 'JetBrains Mono',monospace;color:#F2EFE8;border:1px solid rgba(242,239,232,.28);padding:9px 12px" class="hv2">CTAN</a>
+        <a href="https://github.com/KKTeX" style="font:400 12px/1 'JetBrains Mono',monospace;color:#F2EFE8;border:1px solid rgba(242,239,232,.28);padding:9px 12px" class="hv2">GitHub</a>
+        <a href="https://qiita.com/KKTeX" style="font:400 12px/1 'JetBrains Mono',monospace;color:#F2EFE8;border:1px solid rgba(242,239,232,.28);padding:9px 12px" class="hv2">Qiita</a>
+        <a href="https://x.com/KKTeX_LaTeX3" style="font:400 12px/1 'JetBrains Mono',monospace;color:#F2EFE8;border:1px solid rgba(242,239,232,.28);padding:9px 12px" class="hv2">X</a>
+      </div>
     </div>
-  
-    <div class="texworks-design">
-      <section id="about-sec">
-        <h2>My TeX works</h2>
-        TeXに関する私の成果物は、CTAN（Comprehensive TeX Archive Network）に上がっているもののほか、私のGitHubリポジトリにあるものがあります。
+  </div>
+  <div style="margin-top:44px;display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1px;background:rgba(242,239,232,.18);border-top:1px solid rgba(242,239,232,.18)">
+    <div data-reveal="1" style="background:#0E0E0E;padding:22px 0 0"><div style="font:700 clamp(38px,5vw,64px)/1 Archivo,sans-serif;letter-spacing:-.02em;color:#E8452A">07</div><div data-l="ja"  style="margin-top:8px;font:400 13px/1.7 'Zen Old Mincho',serif;color:#8B867D">CTAN公式パッケージ</div><div data-l="en"  style="margin-top:8px;font:400 14px/1.6 'EB Garamond',serif;color:#8B867D">packages on CTAN</div></div>
+    <div data-stat data-reveal="1" style="background:#0E0E0E;padding:22px 0 0 20px"><div style="font:700 clamp(38px,5vw,64px)/1 Archivo,sans-serif;letter-spacing:-.02em;color:#F2EFE8">4</div><div data-l="ja"  style="margin-top:8px;font:400 13px/1.7 'Zen Old Mincho',serif;color:#8B867D">Fermionのプロダクト</div><div data-l="en"  style="margin-top:8px;font:400 14px/1.6 'EB Garamond',serif;color:#8B867D">products at Fermion</div></div>
+    <div data-stat data-reveal="1" style="background:#0E0E0E;padding:22px 0 0 20px"><div style="font:700 clamp(38px,5vw,64px)/1 Archivo,sans-serif;letter-spacing:-.02em;color:#F2EFE8">11/21</div><div data-l="ja"  style="margin-top:8px;font:400 13px/1.7 'Zen Old Mincho',serif;color:#8B867D">TeXConf2026 登壇</div><div data-l="en"  style="margin-top:8px;font:400 14px/1.6 'EB Garamond',serif;color:#8B867D">speaking at TeXConf2026</div></div>
+  </div>
+</header>
 
-        <h3>Package on CTAN</h3>
-        <ul>
-          <li>keisennote<button type="button" class="btn-ref" id="keisennote-button">参照</button></li>
-          <li>gckanbun<button type="button" class="btn-ref" id="gckanbun-button">参照</button></li>
-          <li>kkluaverb<button type="button" class="btn-ref" id="kkluaverb-button">参照</button></li>
-          <li>luwa-ul<button type="button" class="btn-ref" id="luwa-ul-button">参照</button></li>
-          <li>modernruler<button type="button" class="btn-ref" id="modernruler-button">参照</button></li>
-          <li>kkran<button type="button" class="btn-ref" id="kkran-button">参照</button></li>
-          <li>kksymbols<button type="button" class="btn-ref" id="kksymbols-button">参照</button></li>
-        </ul>
-      </section>
+<section id="about" data-enter="1" style="position:relative;z-index:1;background:#F2EFE8;color:#0E0E0E;padding:clamp(72px,9vw,132px) 32px">
+  <div data-band="1"></div>
+  <div style="max-width:1180px;margin:0 auto">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:20px;font:500 10.5px/1 Archivo,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#6E6A63"><div>01 — About</div><div>No TeX, No Life</div></div>
+    <div data-rule="1" style="margin-top:14px;height:1px;background:rgba(14,14,14,.22)"></div>
+    <div data-aboutgrid style="margin-top:clamp(36px,5vw,64px);display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:clamp(32px,5vw,72px)">
+      <div>
+        <h2 data-mask="view" style="margin:0;font:700 clamp(30px,4.6vw,64px)/1.02 Archivo,sans-serif;letter-spacing:-.025em;color:#0E0E0E"><span class="m">No T<span style="display:inline-block;transform:translateY(.16em)">E</span>X,<br>No Life.</span></h2>
+        <div style="margin-top:24px;font:400 12px/1.9 'JetBrains Mono',monospace;color:#6E6A63">開成中学校・高等学校<br>東京大学理科一類</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:clamp(20px,2.4vw,30px)">
+        
+          <p data-l="ja"  data-reveal="1" style="margin:0;max-width:42em;font:400 clamp(16px,1.35vw,18px)/2.2 'Zen Old Mincho',serif;color:#26251F;text-wrap:pretty">高校一年の冬、同期の影響でLaTeXを触りはじめた。最初にやっていたのは鉄緑会の教材をなんとかして再現することで、黎明期のChatGPTと問答しながら、今見るとひどいと言わざるを得ないコードを書いて無理やり動かしていた。</p>
+          <p data-l="ja"  data-reveal="1" style="margin:0;max-width:42em;font:400 clamp(16px,1.35vw,18px)/2.2 'Zen Old Mincho',serif;color:#26251F;text-wrap:pretty">2025年、東京大学理科三類を受験して失敗し、一年の暇ができた。TeXを本格的に扱いはじめたのはここからである。まずTeXの書籍を執筆しようとして翔泳社に持ち込んだが、企画は流れた。その間に書き続けていたOSSパッケージだけが手元に残った。</p>
+          <p data-l="ja"  data-reveal="1" style="margin:0;max-width:42em;font:400 clamp(16px,1.35vw,18px)/2.2 'Zen Old Mincho',serif;color:#26251F;text-wrap:pretty">特殊記号を扱うKKsymbols、解答欄やマークシートを簡単につくるKKran、漢文組版のgckanbunのリワークなど、合計7本の公式パッケージの著作者になった。2026年に東京大学理科一類へ入学し、同大学三年生であった幸川卓実氏と株式会社Fermionを立ち上げた。</p>
+        
+        
+          <p data-l="en"  data-reveal="1" style="margin:0;max-width:40em;font:400 clamp(17px,1.5vw,20px)/1.95 'EB Garamond',serif;color:#26251F;text-wrap:pretty">I started with LaTeX in the winter of my first high-school year, pushed along by a classmate. What I actually did was try to reproduce my cram-school textbooks, arguing with an early version of ChatGPT and forcing code I would now call unreadable to compile.</p>
+          <p data-l="en"  data-reveal="1" style="margin:0;max-width:40em;font:400 clamp(17px,1.5vw,20px)/1.95 'EB Garamond',serif;color:#26251F;text-wrap:pretty">In 2025 I failed the entrance exam for the University of Tokyo's Faculty of Science III, which left me a spare year. That is where TeX became serious. I first tried to write a book and pitched it to Shoeisha; the plan fell through, and what remained were the packages I had been writing all along.</p>
+          <p data-l="en"  data-reveal="1" style="margin:0;max-width:40em;font:400 clamp(17px,1.5vw,20px)/1.95 'EB Garamond',serif;color:#26251F;text-wrap:pretty">Seven of them are now official CTAN packages. In 2026 I entered the University of Tokyo and founded Fermion Inc. with Takumi Yukikawa, then a third-year student there.</p>
+        
+      </div>
     </div>
-    
-  </main>
-  <script src="index.js"></script>
+  </div>
+</section>
+
+<section id="timeline" data-enter="1" style="position:relative;z-index:1;background:#0E0E0E;color:#F2EFE8;padding:clamp(72px,9vw,132px) 32px">
+  <div data-band="1"></div>
+  <div style="max-width:1180px;margin:0 auto">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:20px;font:500 10.5px/1 Archivo,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#8B867D"><div>02 — Timeline</div><div>2019 → now</div></div>
+    <div data-rule="1" style="margin-top:14px;height:1px;background:rgba(242,239,232,.22)"></div>
+    <div style="margin-top:clamp(28px,4vw,52px);display:flex;flex-direction:column">
+      <div data-tlrow data-reveal="1" style="display:grid;grid-template-columns:minmax(150px,.42fr) minmax(0,1fr);gap:clamp(20px,4vw,56px);align-items:baseline;padding:clamp(20px,2.6vw,32px) 0;border-top:1px solid rgba(242,239,232,.16)">
+        <div style="font:700 clamp(34px,5.4vw,76px)/1 Archivo,sans-serif;letter-spacing:-.03em;color:#3A3833">2019</div>
+        <div data-l="ja"  style="font:400 clamp(15px,1.3vw,17px)/1.95 'Zen Old Mincho',serif;color:#CFCBC2">開成中学校に入学。そのまま開成高等学校へ。</div>
+        <div data-l="en"  style="font:400 clamp(16px,1.4vw,18px)/1.8 'EB Garamond',serif;color:#CFCBC2">Entered Kaisei Junior High School, continuing to Kaisei Senior High School.</div>
+      </div>
+      <div data-tlrow data-reveal="1" style="display:grid;grid-template-columns:minmax(150px,.42fr) minmax(0,1fr);gap:clamp(20px,4vw,56px);align-items:baseline;padding:clamp(20px,2.6vw,32px) 0;border-top:1px solid rgba(242,239,232,.16)">
+        <div style="font:700 clamp(34px,5.4vw,76px)/1 Archivo,sans-serif;letter-spacing:-.03em;color:#3A3833">2023</div>
+        <div data-l="ja"  style="font:400 clamp(15px,1.3vw,17px)/1.95 'Zen Old Mincho',serif;color:#CFCBC2">高校一年の冬、LaTeXを始める。鉄緑会の教材の再現から。</div>
+        <div data-l="en"  style="font:400 clamp(16px,1.4vw,18px)/1.8 'EB Garamond',serif;color:#CFCBC2">Began using LaTeX, reproducing cram-school textbooks.</div>
+      </div>
+      <div data-tlrow data-reveal="1" style="display:grid;grid-template-columns:minmax(150px,.42fr) minmax(0,1fr);gap:clamp(20px,4vw,56px);align-items:baseline;padding:clamp(20px,2.6vw,32px) 0;border-top:1px solid rgba(242,239,232,.16)">
+        <div style="font:700 clamp(34px,5.4vw,76px)/1 Archivo,sans-serif;letter-spacing:-.03em;color:#3A3833">2025</div>
+        <div data-l="ja"  style="font:400 clamp(15px,1.3vw,17px)/1.95 'Zen Old Mincho',serif;color:#CFCBC2">理科三類の受験に失敗。一年の余白をTeXに充てる。書籍を翔泳社に持ち込むが企画は流れる。</div>
+        <div data-l="en"  style="font:400 clamp(16px,1.4vw,18px)/1.8 'EB Garamond',serif;color:#CFCBC2">A spare year after a failed entrance exam, spent on TeX. A book pitch to Shoeisha that did not go through.</div>
+      </div>
+      <div data-tlrow data-reveal="1" style="display:grid;grid-template-columns:minmax(150px,.42fr) minmax(0,1fr);gap:clamp(20px,4vw,56px);align-items:baseline;padding:clamp(20px,2.6vw,32px) 0;border-top:1px solid rgba(242,239,232,.16)">
+        <div style="font:700 clamp(34px,5.4vw,76px)/1 Archivo,sans-serif;letter-spacing:-.03em;color:#3A3833">2025–26</div>
+        <div data-l="ja"  style="font:400 clamp(15px,1.3vw,17px)/1.95 'Zen Old Mincho',serif;color:#CFCBC2">CTAN公式パッケージ7本の著作者になる。</div>
+        <div data-l="en"  style="font:400 clamp(16px,1.4vw,18px)/1.8 'EB Garamond',serif;color:#CFCBC2">Became the author of seven official CTAN packages.</div>
+      </div>
+      <div data-tlrow data-reveal="1" style="display:grid;grid-template-columns:minmax(150px,.42fr) minmax(0,1fr);gap:clamp(20px,4vw,56px);align-items:baseline;padding:clamp(20px,2.6vw,32px) 0;border-top:1px solid rgba(242,239,232,.16)">
+        <div style="font:700 clamp(34px,5.4vw,76px)/1 Archivo,sans-serif;letter-spacing:-.03em;color:#3A3833">2026</div>
+        <div data-l="ja"  style="font:400 clamp(15px,1.3vw,17px)/1.95 'Zen Old Mincho',serif;color:#CFCBC2">東京大学理科一類に入学。幸川卓実氏と株式会社Fermionを設立。</div>
+        <div data-l="en"  style="font:400 clamp(16px,1.4vw,18px)/1.8 'EB Garamond',serif;color:#CFCBC2">Entered the University of Tokyo. Founded Fermion Inc. with Takumi Yukikawa.</div>
+      </div>
+      <div data-tlrow data-reveal="1" style="display:grid;grid-template-columns:minmax(150px,.42fr) minmax(0,1fr);gap:clamp(20px,4vw,56px);align-items:baseline;padding:clamp(20px,2.6vw,32px) 0;border-top:1px solid rgba(242,239,232,.16);border-bottom:1px solid rgba(242,239,232,.16)">
+        <div style="font:700 clamp(34px,5.4vw,76px)/1 Archivo,sans-serif;letter-spacing:-.03em;color:#E8452A">NOW</div>
+        <div data-l="ja"  style="font:400 clamp(15px,1.3vw,17px)/1.95 'Zen Old Mincho',serif;color:#CFCBC2">11月21日、TeXConf2026で登壇。expl3の書籍をWorld of Syzygyから出す企画に携わる（出版予定日未定）。</div>
+        <div data-l="en"  style="font:400 clamp(16px,1.4vw,18px)/1.8 'EB Garamond',serif;color:#CFCBC2">Speaking at TeXConf2026 on 21 November; working on an expl3 book with World of Syzygy (publication date TBD).</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="packages" data-enter="1" style="position:relative;z-index:1;background:#F2EFE8;color:#0E0E0E;padding:clamp(72px,9vw,132px) 32px">
+  <div data-band="1"></div>
+  <div style="max-width:1180px;margin:0 auto">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:20px;font:500 10.5px/1 Archivo,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#6E6A63"><div>03 — Packages</div><a href="https://ctan.org/author/kktex" style="font:400 11px/1 'JetBrains Mono',monospace;letter-spacing:.04em;color:#0E0E0E" class="hv3">ctan.org/author/kktex ↗</a></div>
+    <div data-rule="1" style="margin-top:14px;height:1px;background:rgba(14,14,14,.22)"></div>
+    <h2 data-mask="view" style="margin:clamp(28px,3.6vw,48px) 0 0;font:700 clamp(30px,5.2vw,74px)/1 Archivo,sans-serif;letter-spacing:-.03em;color:#0E0E0E"><span class="m">Seven packages<br>on CTAN</span></h2>
+    <div data-cardgrid style="margin-top:clamp(32px,4vw,56px);display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1px;background:rgba(14,14,14,.2);border:1px solid rgba(14,14,14,.2)">
+      <a data-reveal="1" data-card href="https://ctan.org/pkg/kksymbols" style="display:flex;flex-direction:column;gap:12px;padding:26px;background:#F2EFE8;color:#0E0E0E" class="hv4">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px"><div style="font:500 clamp(16px,5.8cqw,19px)/1 'JetBrains Mono',monospace">KKsymbols</div><div style="font:500 10px/1 Archivo,sans-serif;letter-spacing:.16em;color:#E8452A">01</div></div>
+        <div style="font:400 15px/1.7 'EB Garamond',serif;opacity:.75">LaTeX commands for enclosing characters in circles, squares, diamonds, or brackets.</div>
+        <div data-l="ja"  style="font:400 13px/1.9 'Zen Old Mincho',serif;opacity:.6">丸・四角・菱形・括弧で文字を囲む記号を扱う。</div>
+      </a>
+      <a data-reveal="1" data-card href="https://ctan.org/pkg/kkran" style="display:flex;flex-direction:column;gap:12px;padding:26px;background:#F2EFE8;color:#0E0E0E" class="hv4">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px"><div style="font:500 clamp(16px,5.8cqw,19px)/1 'JetBrains Mono',monospace">KKran</div><div style="font:500 10px/1 Archivo,sans-serif;letter-spacing:.16em;color:#E8452A">02</div></div>
+        <div style="font:400 15px/1.7 'EB Garamond',serif;opacity:.75">Generate answer fields in tests and exams.</div>
+        <div data-l="ja"  style="font:400 13px/1.9 'Zen Old Mincho',serif;opacity:.6">試験の解答欄・マークシートを簡単に作成する。</div>
+      </a>
+      <a data-reveal="1" data-card href="https://ctan.org/pkg/gckanbun" style="display:flex;flex-direction:column;gap:12px;padding:26px;background:#F2EFE8;color:#0E0E0E" class="hv4">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px"><div style="font:500 clamp(16px,5.8cqw,19px)/1 'JetBrains Mono',monospace">gckanbun</div><div style="font:500 10px/1 Archivo,sans-serif;letter-spacing:.16em;color:#E8452A">03</div></div>
+        <div style="font:400 15px/1.7 'EB Garamond',serif;opacity:.75">Kanbun typesetting for (u)pLaTeX and LuaLaTeX.</div>
+        <div data-l="ja"  style="font:400 13px/1.9 'Zen Old Mincho',serif;opacity:.6">漢文の組版。既存パッケージのリワーク。</div>
+      </a>
+      <a data-reveal="1" data-card href="https://ctan.org/pkg/modernruler" style="display:flex;flex-direction:column;gap:12px;padding:26px;background:#F2EFE8;color:#0E0E0E" class="hv4">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px"><div style="font:500 clamp(16px,5.8cqw,19px)/1 'JetBrains Mono',monospace">modernruler</div><div style="font:500 10px/1 Archivo,sans-serif;letter-spacing:.16em;color:#E8452A">04</div></div>
+        <div style="font:400 15px/1.7 'EB Garamond',serif;opacity:.75">Flexible ruler and annotation commands with key-value support and vertical writing compatibility.</div>
+        <div data-l="ja"  style="font:400 13px/1.9 'Zen Old Mincho',serif;opacity:.6">キーバリュー指定と縦組に対応した罫・注釈コマンド。</div>
+      </a>
+      <a data-reveal="1" data-card href="https://ctan.org/pkg/keisennote" style="display:flex;flex-direction:column;gap:12px;padding:26px;background:#F2EFE8;color:#0E0E0E" class="hv4">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px"><div style="font:500 clamp(16px,5.8cqw,19px)/1 'JetBrains Mono',monospace">keisennote</div><div style="font:500 10px/1 Archivo,sans-serif;letter-spacing:.16em;color:#E8452A">05</div></div>
+        <div style="font:400 15px/1.7 'EB Garamond',serif;opacity:.75">TikZ-based Japanese-style notebook ruled lines for LaTeX.</div>
+        <div data-l="ja"  style="font:400 13px/1.9 'Zen Old Mincho',serif;opacity:.6">TikZによる日本式ノートの罫線。</div>
+      </a>
+      <a data-reveal="1" data-card href="https://ctan.org/pkg/kkluaverb" style="display:flex;flex-direction:column;gap:12px;padding:26px;background:#F2EFE8;color:#0E0E0E" class="hv4">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px"><div style="font:500 clamp(16px,5.8cqw,19px)/1 'JetBrains Mono',monospace">KKluaverb</div><div style="font:500 10px/1 Archivo,sans-serif;letter-spacing:.16em;color:#E8452A">06</div></div>
+        <div style="font:400 15px/1.7 'EB Garamond',serif;opacity:.75">Provides a Lua-enhanced versatile \verb command.</div>
+        <div data-l="ja"  style="font:400 13px/1.9 'Zen Old Mincho',serif;opacity:.6">Luaで強化した汎用の verb コマンド。</div>
+      </a>
+      <a data-reveal="1" data-card href="https://ctan.org/pkg/luwa-ul" style="display:flex;flex-direction:column;gap:12px;padding:26px;background:#F2EFE8;color:#0E0E0E" class="hv4">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px"><div style="font:500 clamp(16px,5.8cqw,19px)/1 'JetBrains Mono',monospace">luwa-ul</div><div style="font:500 10px/1 Archivo,sans-serif;letter-spacing:.16em;color:#E8452A">07</div></div>
+        <div style="font:400 15px/1.7 'EB Garamond',serif;opacity:.75">Provides underlines and other highlighting which can be used in vertical mode.</div>
+        <div data-l="ja"  style="font:400 13px/1.9 'Zen Old Mincho',serif;opacity:.6">縦組でも使える下線・強調。</div>
+      </a>
+      <div data-reveal="1" style="display:flex;align-items:flex-end;padding:26px;background:#E8452A;color:#F2EFE8;font:500 11px/1.8 Archivo,sans-serif;letter-spacing:.16em;text-transform:uppercase">typeset sample<br>組版サンプル</div>
+    </div>
+  </div>
+</section>
+
+<section id="products" data-enter="1" style="position:relative;z-index:1;background:#0E0E0E;color:#F2EFE8;padding:clamp(72px,9vw,132px) 32px">
+  <div data-band="1"></div>
+  <div style="max-width:1180px;margin:0 auto">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:20px;font:500 10.5px/1 Archivo,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#8B867D"><div>04 — Products</div><div>Fermion Inc. / 2026–</div></div>
+    <div data-rule="1" style="margin-top:14px;height:1px;background:rgba(242,239,232,.22)"></div>
+    <div style="margin-top:clamp(28px,3.6vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(24px,3vw,48px);align-items:end">
+      <h2 data-l="ja"  data-mask="view" style="margin:0;font:500 clamp(28px,4.4vw,58px)/1.2 'Zen Old Mincho',serif;letter-spacing:.01em"><span class="m">株式会社Fermion</span></h2>
+      <h2 data-l="en"  data-mask="view" style="margin:0;font:700 clamp(30px,5.2vw,72px)/1 Archivo,sans-serif;letter-spacing:-.03em"><span class="m">Fermion Inc.</span></h2>
+      <p data-l="ja"  data-reveal="1" style="margin:0;max-width:34em;font:400 clamp(15px,1.3vw,17px)/2 'Zen Old Mincho',serif;color:#CFCBC2;text-wrap:pretty">2026年、幸川卓実氏と設立。TeXと数式まわりのプロダクトを開発している。</p>
+      <p data-l="en"  data-reveal="1" style="margin:0;max-width:34em;font:400 clamp(16px,1.4vw,18px)/1.8 'EB Garamond',serif;color:#CFCBC2;text-wrap:pretty">Founded in 2026 with Takumi Yukikawa, building products around TeX and mathematical notation.</p>
+    </div>
+    <div data-cardgrid style="margin-top:clamp(32px,4vw,56px);display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1px;background:rgba(242,239,232,.2);border:1px solid rgba(242,239,232,.2)">
+      <a data-reveal="1" data-card href="https://tex64.com/ja" style="display:flex;flex-direction:column;background:#0E0E0E;color:#F2EFE8" class="hv5">
+        <img src="uploads/tex64-og.jpg" alt="TeX64" style="display:block;width:100%;aspect-ratio:3/2;object-fit:contain;background:#000;border-bottom:1px solid rgba(242,239,232,.2)">
+        <div style="padding:22px"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px"><div style="font:500 clamp(15px,4.6cqw,18px)/1 'JetBrains Mono',monospace">TeX64</div><div style="font:400 11px/1 'JetBrains Mono',monospace;color:#E8452A">tex64.com ↗</div></div><div data-l="ja"  style="margin-top:12px;font:400 13.5px/2 'Zen Old Mincho',serif;color:#A9A49B">macOS・Windows対応のローカルファーストLaTeXエディタ。AI執筆機能 Axiom、直感的な数式入力、画像からの数式OCR。</div><div data-l="en"  style="margin-top:12px;font:400 15px/1.8 'EB Garamond',serif;color:#A9A49B">A local-first LaTeX editor for macOS and Windows, with the Axiom writing AI, visual equation input, and math OCR from images.</div></div>
+      </a>
+      <a data-reveal="1" data-card href="https://mathhover.com/" style="display:flex;flex-direction:column;background:#0E0E0E;color:#F2EFE8" class="hv5">
+        <img src="uploads/mathhover-og.jpg" alt="MathHover" style="display:block;width:100%;aspect-ratio:3/2;object-fit:contain;background:#000;border-bottom:1px solid rgba(242,239,232,.2)">
+        <div style="padding:22px"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px"><div style="font:500 clamp(15px,4.6cqw,18px)/1 'JetBrains Mono',monospace">MathHover</div><div style="font:400 11px/1 'JetBrains Mono',monospace;color:#E8452A">mathhover.com ↗</div></div><div data-l="ja"  style="margin-top:12px;font:400 13.5px/2 'Zen Old Mincho',serif;color:#A9A49B">カーソルの隣に開く数式入力パネル。LaTeXを書いてEnterで元のアプリへ貼り戻す。無料・オフライン・v1.0はApache-2.0で公開予定。</div><div data-l="en"  style="margin-top:12px;font:400 15px/1.8 'EB Garamond',serif;color:#A9A49B">A math input panel that opens next to your cursor in any app. Write LaTeX, press Enter, and it is pasted straight back. Free and offline; v1.0 under Apache-2.0.</div></div>
+      </a>
+      <a data-reveal="1" data-card href="https://evolton.jp/" style="display:flex;flex-direction:column;background:#0E0E0E;color:#F2EFE8" class="hv5">
+        <img src="uploads/evolton-og.jpg" alt="Evolton" style="display:block;width:100%;aspect-ratio:3/2;object-fit:contain;background:#000;border-bottom:1px solid rgba(242,239,232,.2)">
+        <div style="padding:22px"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px"><div style="font:500 clamp(15px,4.6cqw,18px)/1 'JetBrains Mono',monospace">Evolton</div><div style="font:400 11px/1 'JetBrains Mono',monospace;color:#E8452A">evolton.jp ↗</div></div><div data-l="ja"  style="margin-top:12px;font:400 13.5px/2 'Zen Old Mincho',serif;color:#A9A49B">問題の写真から解答PDFを作成。13大学・4,313問の入試数学 過去問データベースとオーダーメイド問題集。</div><div data-l="en"  style="margin-top:12px;font:400 15px/1.8 'EB Garamond',serif;color:#A9A49B">Answer PDFs built from a photo of a problem, plus a database of 4,313 entrance-exam problems from 13 universities.</div></div>
+      </a>
+      <a data-reveal="1" data-card href="https://mcp.tex64.com" style="display:flex;flex-direction:column;background:#0E0E0E;color:#F2EFE8" class="hv5">
+        <div style="aspect-ratio:3/2;border-bottom:1px solid rgba(242,239,232,.2);display:flex;align-items:center;justify-content:center;padding:24px;background:#000"><div style="font:400 14px/1.95 'JetBrains Mono',monospace;color:#F2EFE8">$ curl mcp.tex64.com<br><span style="color:#E8452A">TeX64 MCP: ok</span></div></div>
+        <div style="padding:22px"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px"><div style="font:500 clamp(15px,4.6cqw,18px)/1 'JetBrains Mono',monospace">TeX64 MCP</div><div style="font:400 11px/1 'JetBrains Mono',monospace;color:#E8452A">mcp.tex64.com ↗</div></div><div data-l="ja"  style="margin-top:12px;font:400 13.5px/2 'Zen Old Mincho',serif;color:#A9A49B">TeX64のMCPサーバ。AIエージェントから組版環境を叩くためのエンドポイント。</div><div data-l="en"  style="margin-top:12px;font:400 15px/1.8 'EB Garamond',serif;color:#A9A49B">The MCP server for TeX64 — an endpoint for AI agents to reach the typesetting environment.</div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="writing" data-enter="1" style="position:relative;z-index:1;background:#F2EFE8;color:#0E0E0E;padding:clamp(72px,9vw,132px) 32px">
+  <div data-band="1"></div>
+  <div style="max-width:1180px;margin:0 auto">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:20px;font:500 10.5px/1 Archivo,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#6E6A63"><div>05 — Writing &amp; Talk</div><div>Qiita / TeXConf / World of Syzygy</div></div>
+    <div data-rule="1" style="margin-top:14px;height:1px;background:rgba(14,14,14,.22)"></div>
+    <div style="margin-top:clamp(32px,4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(32px,4vw,64px)">
+      <div style="display:flex;flex-direction:column">
+        <a data-reveal="1" href="https://qiita.com/KKTeX" style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:20px 0;border-top:1px solid rgba(14,14,14,.2);color:#0E0E0E" class="hv3">
+          <span data-l="ja"  style="font:400 clamp(16px,1.5vw,19px)/1.7 'Zen Old Mincho',serif">Qiita — TeX / LaTeX の記事</span><span data-l="en"  style="font:400 clamp(17px,1.6vw,21px)/1.5 'EB Garamond',serif">Qiita — articles on TeX and LaTeX</span><span style="font:400 12px 'JetBrains Mono',monospace;opacity:.5">↗</span>
+        </a>
+        <a data-reveal="1" href="https://worldofsyzygy.com/" style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:20px 0;border-top:1px solid rgba(14,14,14,.2);color:#0E0E0E" class="hv3">
+          <span data-l="ja"  style="font:400 clamp(16px,1.5vw,19px)/1.7 'Zen Old Mincho',serif">expl3 の書籍（World of Syzygy／出版予定日未定）</span><span data-l="en"  style="font:400 clamp(17px,1.6vw,21px)/1.5 'EB Garamond',serif">A book on expl3 (World of Syzygy, publication date TBD)</span><span style="font:400 12px 'JetBrains Mono',monospace;opacity:.5">↗</span>
+        </a>
+        <a data-reveal="1" href="https://github.com/KKTeX" style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:20px 0;border-top:1px solid rgba(14,14,14,.2);border-bottom:1px solid rgba(14,14,14,.2);color:#0E0E0E" class="hv3">
+          <span data-l="ja"  style="font:400 clamp(16px,1.5vw,19px)/1.7 'Zen Old Mincho',serif">GitHub — パッケージのソース</span><span data-l="en"  style="font:400 clamp(17px,1.6vw,21px)/1.5 'EB Garamond',serif">GitHub — package sources</span><span style="font:400 12px 'JetBrains Mono',monospace;opacity:.5">↗</span>
+        </a>
+      </div>
+      <div data-reveal="1" style="background:#0E0E0E;color:#F2EFE8;padding:clamp(26px,3vw,40px)">
+        <div style="font:500 10.5px/1 Archivo,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#E8452A">TeXConf 2026 — 11/21</div>
+        <div data-l="ja"  style="margin-top:16px;font:500 clamp(26px,3.4vw,42px)/1.25 'Zen Old Mincho',serif">登壇</div>
+        <div data-l="en"  style="margin-top:16px;font:700 clamp(28px,3.6vw,46px)/1.05 Archivo,sans-serif;letter-spacing:-.02em">Invited talk</div>
+        <p data-l="ja"  style="margin:16px 0 0;max-width:26em;font:400 clamp(14px,1.2vw,16px)/2 'Zen Old Mincho',serif;color:#A9A49B;text-wrap:pretty">Qiitaの記事とXでの投稿が日本のTeX界の方々の目に留まり、登壇の依頼をいただいた。</p>
+        <p data-l="en"  style="margin:16px 0 0;max-width:26em;font:400 clamp(15px,1.3vw,17px)/1.8 'EB Garamond',serif;color:#A9A49B;text-wrap:pretty">An invitation that came from my Qiita articles and posts on X being noticed by the Japanese TeX community.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" data-enter="1" style="position:relative;z-index:1;background:#E8452A;color:#0E0E0E;padding:clamp(72px,9vw,132px) 32px clamp(40px,5vw,64px)">
+  <div data-band="1"></div>
+  <div style="max-width:1180px;margin:0 auto">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:20px;font:500 10.5px/1 Archivo,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:rgba(14,14,14,.6)"><div>06 — Now</div><div>@KKTeX_LaTeX3</div></div>
+    <div data-rule="1" style="margin-top:14px;height:1px;background:rgba(14,14,14,.3)"></div>
+    <h2 data-l="ja"  data-mask="view" style="margin:clamp(32px,4vw,56px) 0 0;max-width:24em;font:500 clamp(24px,3.2vw,46px)/1.55 'Zen Old Mincho',serif;color:#0E0E0E"><span class="m">いまは expl3 の書籍を書きながら、Fermion で組版の道具をつくっています。</span></h2>
+    <h2 data-l="en"  data-mask="view" style="margin:clamp(32px,4vw,56px) 0 0;max-width:22em;font:700 clamp(28px,4.4vw,60px)/1.08 Archivo,sans-serif;letter-spacing:-.025em;color:#0E0E0E"><span class="m">Currently writing a book on expl3 and building typesetting tools at Fermion.</span></h2>
+    <div style="margin-top:clamp(36px,4.5vw,60px);display:flex;flex-wrap:wrap;gap:10px">
+      <a href="https://x.com/KKTeX_LaTeX3" style="font:400 13px/1 'JetBrains Mono',monospace;color:#E8452A;background:#0E0E0E;padding:15px 20px" class="hv6">X / @KKTeX_LaTeX3</a>
+      <a href="https://ctan.org/author/kktex" style="font:400 13px/1 'JetBrains Mono',monospace;color:#0E0E0E;border:1px solid rgba(14,14,14,.5);padding:15px 20px" class="hv7">CTAN</a>
+      <a href="https://github.com/KKTeX" style="font:400 13px/1 'JetBrains Mono',monospace;color:#0E0E0E;border:1px solid rgba(14,14,14,.5);padding:15px 20px" class="hv7">GitHub</a>
+      <a href="https://qiita.com/KKTeX" style="font:400 13px/1 'JetBrains Mono',monospace;color:#0E0E0E;border:1px solid rgba(14,14,14,.5);padding:15px 20px" class="hv7">Qiita</a>
+    </div>
+    <div style="margin-top:clamp(48px,7vw,96px);padding-top:20px;border-top:1px solid rgba(14,14,14,.3);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font:500 10.5px/1.6 Archivo,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:rgba(14,14,14,.7)">
+      <div>川口 晃世 / KKTeX</div>
+      <div>© 2026 KKTeX</div>
+    </div>
+  </div>
+</section>
+</div>
+<script src="site.js" defer></script>
 </body>
 </html>

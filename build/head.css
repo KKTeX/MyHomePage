@@ -1,0 +1,45 @@
+
+/* ── language ───────────────────────────────────────────────────────────────
+   Both languages ship in the HTML; CSS decides which one is shown. Nothing is
+   added to or removed from the DOM on a switch, so no reveal can get stranded
+   mid-animation — the failure mode the handoff notes warn about. */
+html[lang="ja"] [data-l="en"],
+html[lang="en"] [data-l="ja"]{display:none!important}
+
+/* sticky nav is ~45px tall; keep anchor targets clear of it */
+header[id],section[id]{scroll-margin-top:56px}
+
+#langToggle{font-family:'JetBrains Mono',monospace}
+img{max-width:100%}
+
+/* ── responsive ─────────────────────────────────────────────────────────────
+   The prototype was built desktop-only. Every type size is already clamp() and
+   cards are sized in cqw, so only the column structure and gutters need to
+   fold. Overrides use !important because the design's values live in inline
+   style attributes. */
+@media (max-width:900px){
+  [data-herogrid]{grid-template-columns:minmax(0,1fr)!important;gap:40px!important;align-items:start!important}
+  [data-aboutgrid]{grid-template-columns:minmax(0,1fr)!important}
+}
+@media (max-width:760px){
+  [data-tlrow]{grid-template-columns:minmax(0,1fr)!important;gap:8px!important;align-items:start!important}
+  nav{padding:12px 20px!important}
+  header[id]{padding-left:20px!important;padding-right:20px!important}
+  section{padding-left:20px!important;padding-right:20px!important}
+  /* the anchor row scrolls sideways; the language toggle stays put */
+  [data-navlinks]{min-width:0;gap:14px!important}
+  [data-navscroll]{min-width:0;overflow-x:auto;overflow-y:hidden;gap:16px!important;
+                   scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  [data-navscroll]::-webkit-scrollbar{display:none}
+  [data-navscroll] > a{flex:none;white-space:nowrap}
+  #langToggle{flex:none}
+}
+@media (max-width:520px){
+  [data-cardgrid]{grid-template-columns:minmax(0,1fr)!important}
+  [data-stat]{padding-left:0!important}
+}
+
+/* The source block is typed in one character at a time. Reserve its finished
+   height so the hero does not grow under the reader for the ~4s that takes —
+   and so the stats row below it is measured in its settled position. */
+pre{min-height:244px}
