@@ -63,6 +63,9 @@ head = f'''<meta charset="utf-8">
 <meta name="twitter:description" content="{DESC}">
 <meta name="twitter:image" content="{SITE}/uploads/og.jpg">
 
+<!-- Google Search Console ownership. Keep this: removing it un-verifies the property. -->
+<meta name="google-site-verification" content="O1G5lu5yk9GQJr1PDgKg5x6EkdyIny6PiM6HfDso8Rk">
+
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="uploads/icon-512.jpg">
 
