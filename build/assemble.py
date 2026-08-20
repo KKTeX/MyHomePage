@@ -68,7 +68,7 @@ head = f'''<meta charset="utf-8">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&amp;family=Zen+Old+Mincho:wght@400;500;700&amp;family=EB+Garamond:ital,wght@0,400;0,500;1,400&amp;family=JetBrains+Mono:wght@300;400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&amp;family=Cormorant+Garamond:wght@400;500&amp;family=Jost:wght@500&amp;family=Shippori+Mincho:wght@400;500&amp;family=JetBrains+Mono:wght@300;400;500&amp;display=swap" rel="stylesheet">
 
 <style>
 {base_css}

@@ -32,8 +32,10 @@ animation — the failure the handoff notes warn about.
 
 ## Hand-maintained files
 
-- `build/head.css` — language switching, hover rules, responsive overrides.
-  The design's own values stay in inline styles, so these use `!important`.
+- `build/head.css` — language switching, hover rules, typefaces, page gutter,
+  responsive overrides. The design's own values stay in inline styles, so these
+  use `!important` and select on inline-style substrings (`[style*="…"]`) where
+  a type role has no class of its own.
 - `public/site.js` — language toggle, progress bar, typewriter, scroll reveals.
 - `build/og.html` — source for the 1200x630 social card. To re-render:
   ```
