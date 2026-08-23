@@ -49,6 +49,19 @@ animation — the failure the handoff notes warn about.
     --screenshot=og.png --window-size=1200,630 "file://$PWD/build/og.html"
   sips -s format jpeg -s formatOptions 88 og.png --out public/uploads/og.jpg
   ```
+- `build/mcp-card.html` — source for the 1200x800 TeX64 MCP card image. It fans
+  the three pages in `build/assets/mcp/`, which are the samples the MCP page
+  itself publishes (`https://tex64.com/mcp/sample-{cover,body,exercise}.png`,
+  fetched 2026-08-23) — a B5 lecture note the server typeset. To re-render:
+  ```
+  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless \
+    --force-device-scale-factor=2 --screenshot=mcp.png --window-size=1200,800 \
+    "file://$PWD/build/mcp-card.html"
+  sips -s format jpeg -s formatOptions 92 -Z 1200 mcp.png \
+    --out public/uploads/tex64-mcp-og.jpg
+  ```
+  Render at 2x and let `sips -Z 1200` downsample; at 1x the page text in the
+  fanned pages goes to mush.
 
 ## Images
 
@@ -56,5 +69,25 @@ Product cards hot-linked other sites' OG images in the prototype; they are
 self-hosted in `public/uploads/` now. Re-fetch and re-compress with
 `sips -s format jpeg -s formatOptions 80 -Z 1200 <src> --out <dest>`.
 
-Still outstanding from the handoff: the 8th Packages cell is a vermilion
-placeholder waiting on a real typeset sample image.
+The TeX64 MCP card is the exception: it has no OG image worth reusing — the MCP
+page's own `og:image` is just the TeX64 one, already on the card next to it —
+so it gets a composed image instead. See `build/mcp-card.html` above.
+
+## Edits that are not in the canvas export
+
+`public/index.html` carries three body changes made by hand after the last
+export, so regenerating from that export silently reverts them:
+
+- the TeX64 MCP card's image. The export drew a CSS terminal mock
+  (`$ curl mcp.tex64.com`) in the image slot; it is now an `<img>` matching the
+  other three product cards.
+- the 8th Packages cell. The export left a vermilion `typeset sample /
+  組版サンプル` placeholder there; it is now the **paracolrule** card
+  (CTAN, 2026-08-22), which fills the 4x2 grid exactly.
+- the package count. Seven became eight in the two hero paragraphs, the `08`
+  hero stat, the Packages heading, the About paragraphs and the 2025-26
+  timeline row — and in `assemble.py`'s `DESC`/`DESC_EN`/JSON-LD and in
+  `og.html`, which are regenerated from source and so are safe.
+
+When the next export arrives, re-apply the first two before running
+`assemble.py`, and check the counts against `ctan.org/author/kktex`.

@@ -1,0 +1,21 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<style>
+*{box-sizing:border-box;margin:0}
+body{width:1200px;height:800px;background:#0E0E0E;overflow:hidden;position:relative}
+.stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+img{position:absolute;height:600px;width:auto;display:block;
+    border:1px solid rgba(242,239,232,.16);background:#F2EFE8}
+.l{transform:translateX(-255px) rotate(-5deg);box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.r{transform:translateX( 255px) rotate( 5deg);box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.c{transform:scale(1.05);box-shadow:0 34px 90px rgba(0,0,0,.75);
+   border-color:rgba(242,239,232,.28)}
+.band{position:absolute;left:0;right:0;bottom:0;height:4px;background:#E8452A}
+</style></head>
+<body>
+<div class="stage">
+  <img class="l" src="assets/mcp/sample-body.png" alt="">
+  <img class="r" src="assets/mcp/sample-exercise.png" alt="">
+  <img class="c" src="assets/mcp/sample-cover.png" alt="">
+</div>
+<div class="band"></div>
+</body></html>

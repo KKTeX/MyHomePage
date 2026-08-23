@@ -31,9 +31,9 @@ body, n = nav_pat.subn(
 assert n == 1, f"nav wrap: {n}"
 
 TITLE = "川口 晃世 / KKTeX — Portfolio"
-DESC  = ("TeXで組版の道具をつくっています。CTAN公式パッケージ7本の著作者、"
+DESC  = ("TeXで組版の道具をつくっています。CTAN公式パッケージ8本の著作者、"
          "株式会社Fermion共同創業者、東京大学理科一類1年。")
-DESC_EN = ("Kosei Kawaguchi (KKTeX) — author of seven packages on CTAN, "
+DESC_EN = ("Kosei Kawaguchi (KKTeX) — author of eight packages on CTAN, "
            "co-founder of Fermion Inc., first-year student at the University of Tokyo.")
 
 head = f'''<meta charset="utf-8">
@@ -86,8 +86,8 @@ head = f'''<meta charset="utf-8">
       "givenName": "晃世",
       "url": "{SITE}/",
       "image": "{SITE}/uploads/og.jpg",
-      "description": "TeXで組版の道具をつくっています。CTAN公式パッケージ7本の著作者、株式会社Fermion共同創業者、東京大学理科一類1年。",
-      "disambiguatingDescription": "Author of seven official packages on CTAN, co-founder of Fermion Inc., first-year student at the University of Tokyo. Currently writing a book on expl3.",
+      "description": "TeXで組版の道具をつくっています。CTAN公式パッケージ8本の著作者、株式会社Fermion共同創業者、東京大学理科一類1年。",
+      "disambiguatingDescription": "Author of eight official packages on CTAN, co-founder of Fermion Inc., first-year student at the University of Tokyo. Currently writing a book on expl3.",
       "knowsAbout": ["TeX", "LaTeX", "expl3", "組版", "typesetting"],
       "affiliation": {{
         "@type": "CollegeOrUniversity",
@@ -121,7 +121,7 @@ head = f'''<meta charset="utf-8">
       "@id": "{SITE}/#website",
       "url": "{SITE}/",
       "name": "川口 晃世 / KKTeX — Portfolio",
-      "description": "TeXで組版の道具をつくっています。CTAN公式パッケージ7本の著作者、株式会社Fermion共同創業者、東京大学理科一類1年。",
+      "description": "TeXで組版の道具をつくっています。CTAN公式パッケージ8本の著作者、株式会社Fermion共同創業者、東京大学理科一類1年。",
       "inLanguage": ["ja", "en"],
       "author": {{"@id": "{SITE}/#person"}},
       "publisher": {{"@id": "{SITE}/#person"}},
