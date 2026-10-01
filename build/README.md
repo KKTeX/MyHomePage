@@ -12,7 +12,7 @@ that date if the old design is ever wanted back.
 
 ## Product card images
 
-`cards/*.html` compose the three images on the Products section. Each is a flat
+`cards/*.html` compose the four images on the Products section. Each is a flat
 plate in one of the page's palette colours with the product's own current UI or
 output laid on it. The only drawn element is the request bubble on the MCP
 card.
@@ -21,6 +21,7 @@ card.
 |---|---|---|---|
 | `tex64.html` | oat `#E3DACC` | `cards/tex64-app.png` | `https://tex64.com/marketing/tex64-spectral-app-clean.png` |
 | `evolton.html` | cactus `#BCD1CA` | `cards/evolton-answer.png`, `cards/evolton-bank.png` | `https://evolton.jp/home-todai-exam-prep-template.png`, `/home-problem-bank.png` |
+| `scoring64.html` | teal `#A8D5CF` | `cards/scoring64-grading.png` | `assets/img/s10-grading.webp` in `Fermion-company/scoring64-download` (2026-10-01) |
 | `mcp.html` | clay `#D97757` | `mcp/sample-{cover,body,exercise}.png` | `https://tex64.com/mcp/sample-{cover,body,exercise}.png` |
 
 All fetched 2026-09-27.
@@ -42,7 +43,7 @@ sips -s format jpeg -s formatOptions 86 -Z 1200 card.png \
   --out public/uploads/tex64-card.jpg
 ```
 
-Output names: `tex64-card.jpg`, `evolton-card.jpg`, `tex64-mcp-card.jpg`. Render at 2x and let `sips -Z 1200` downsample; at 1x the
+Output names: `tex64-card.jpg`, `evolton-card.jpg`, `scoring64-card.jpg`, `tex64-mcp-card.jpg`. Render at 2x and let `sips -Z 1200` downsample; at 1x the
 text inside the screenshots goes to mush. `--allow-file-access-from-files` is
 what lets the page load the images beside it.
 
@@ -63,10 +64,15 @@ sips -s format jpeg -s formatOptions 88 -Z 1200 og.png --out public/uploads/og.j
   heading, About, the 2025–26 timeline row, `og.html`, and the `<meta>`
   descriptions and JSON-LD in the `<head>`. Check against
   `ctan.org/author/kktex`.
-- **Product count** (three): the `3` stat in the hero counts the Fermion
-  products the page shows — TeX64, TeX64 MCP, Evolton. MathHover was taken off
+- **Product count** (four): the `4` stat in the hero counts the Fermion
+  products the page shows — TeX64, TeX64 MCP, Evolton, Scoring64 (added
+  2026-10-01). MathHover was taken off
   the page on 2026-09-27 at the author's request; keep the stat matched to the
   cards rather than to Fermion's full lineup.
+- **Plugin count** (two): the `2` stat in the hero counts the TeX64 plugin
+  for ChatGPT and the one for Claude. The hero paragraph, the `<meta>`
+  descriptions, the JSON-LD and `og.html` name them beside the CTAN packages
+  (since 2026-10-01); keep all of them matched.
 - **TeX64 MCP in ChatGPT**: published in the ChatGPT plugin directory
   (Education & Research) at
   `https://chatgpt.com/plugins/plugin_asdk_app_6a8abcc3f22c819196d21cf6e44e3a3b`.
