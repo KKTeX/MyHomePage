@@ -2,8 +2,9 @@
 
 Static single-page site, live at <https://kktexportfolio.klassikore.com/>.
 
-`public/` is what ships. It is **generated**, not hand-authored — read
-[build/README.md](build/README.md) before editing anything in it.
+`public/` is what ships, and it is edited by hand: `index.html`, `style.css`
+and `site.js`. The images in `public/uploads/` are rendered from sources in
+`build/` — see [build/README.md](build/README.md) before replacing one.
 
 ## Deploying
 
@@ -37,12 +38,11 @@ Note that `/index.html` 308-redirects to `/`, so fetch with `-L` or fetch `/`.
 <meta name="google-site-verification" content="...">
 ```
 
-in the `<head>` — it is in `build/assemble.py`'s head template and in the
-generated `public/index.html`. This tag is the ownership proof for the Google
-Search Console property `https://kktexportfolio.klassikore.com/` (URL-prefix
-type, verified by meta tag rather than by the `google….html` file so that the
-token survives a regeneration). Deleting it un-verifies the property, and the
-sitemap and indexing reports stop working until it is verified again.
+in the `<head>` of `public/index.html`. This tag is the ownership proof for the
+Google Search Console property `https://kktexportfolio.klassikore.com/`
+(URL-prefix type, verified by meta tag rather than by a `google….html` file).
+Deleting it — easy to do in a rewrite of the page — un-verifies the property,
+and the sitemap and indexing reports stop working until it is verified again.
 
 ## Search assets
 
@@ -60,9 +60,9 @@ sitemap and indexing reports stop working until it is verified again.
   Gemini training, not Google Search — but while it stands, AI assistants will
   not cite the site.
 
-- **JSON-LD** (`Person` + `WebSite`) in the `<head>`, also from `assemble.py`.
-  Every claim in it is stated somewhere on the page; keep it that way rather
-  than adding facts the page does not carry.
+- **JSON-LD** (`Person` + `WebSite`) in the `<head>`. Every claim in it is
+  stated somewhere on the page; keep it that way rather than adding facts the
+  page does not carry.
 
 ## Backlinks
 

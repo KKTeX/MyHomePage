@@ -1,31 +1,33 @@
 <!DOCTYPE html><html><head><meta charset="utf-8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700&family=Zen+Old+Mincho:wght@400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400&family=Hanken+Grotesk:wght@600&family=Noto+Sans+JP:wght@500&family=Source+Serif+4:opsz,wght@8..60,400&display=swap" rel="stylesheet">
 <style>
+/* The 1200x630 social card, in the page's own palette and type. */
 *{box-sizing:border-box;margin:0}
-body{width:1200px;height:630px;background:#0E0E0E;color:#F2EFE8;overflow:hidden;
-     display:flex;flex-direction:column;justify-content:space-between;padding:64px 72px}
-.band{position:absolute;top:0;left:0;right:0;height:8px;background:#E8452A}
-.top{display:flex;justify-content:space-between;align-items:baseline;
-     font:500 17px/1 Archivo,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#8B867D}
-h1{font:700 132px/.88 Archivo,sans-serif;letter-spacing:-.035em;color:#F2EFE8}
-.ja{margin-top:22px;font:400 40px/1 'Zen Old Mincho',serif;letter-spacing:.12em;color:#E8452A}
-.rule{margin-top:32px;height:3px;background:#E8452A;width:280px}
-.bot{display:flex;justify-content:space-between;align-items:flex-end;gap:32px}
-.tag{font:400 20px/1.9 'JetBrains Mono',monospace;color:#A9A49B}
-.tag b{color:#F2EFE8;font-weight:400}
+body{width:1200px;height:630px;background:#FAF9F5;color:#141413;overflow:hidden;
+     display:flex;flex-direction:column;justify-content:space-between;padding:64px 72px;
+     -webkit-font-smoothing:antialiased}
+.top,.bot{display:flex;justify-content:space-between;align-items:baseline;
+          font:400 17px/1 'Geist Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#73726C}
+.top b{font-weight:400;color:#A94F2E}
+h1{font:600 120px/.98 'Hanken Grotesk',sans-serif;letter-spacing:-.04em}
+.ja{margin-top:22px;font:500 34px/1 'Noto Sans JP',sans-serif;letter-spacing:.1em;color:#3D3D3A}
+.tag{font:400 25px/1.4 'Source Serif 4',serif;color:#3D3D3A;letter-spacing:0;text-transform:none}
+.tag b{font-weight:400;color:#141413}
+.dot{position:absolute;right:72px;top:236px;width:128px;height:128px;border-radius:28px;background:#D97757}
+.dot::after{content:"K";position:absolute;inset:0;display:grid;place-items:center;
+            font:600 84px/1 'Hanken Grotesk',sans-serif;color:#141413;letter-spacing:-.03em}
 </style></head>
 <body>
-<div class="band"></div>
-<div class="top"><div>Portfolio — 2026</div><div>Tokyo, Japan</div></div>
+<div class="top"><div><b>KKTeX</b> — Portfolio 2026</div><div>Tokyo, Japan</div></div>
+<div class="dot"></div>
 <div>
-  <h1>KAWAGUCHI<br>KOSEI</h1>
+  <h1>Kosei<br>Kawaguchi</h1>
   <div class="ja">川口 晃世</div>
-  <div class="rule"></div>
 </div>
 <div class="bot">
-  <div class="tag"><b>8</b> packages on CTAN &nbsp;·&nbsp; <b>Fermion Inc.</b> &nbsp;·&nbsp; <b>UTokyo</b></div>
-  <div class="tag">@KKTeX_LaTeX3</div>
+  <div class="tag"><b>Eight packages on CTAN</b> · Fermion Inc. · University of Tokyo</div>
+  <div>@KKTeX_LaTeX3</div>
 </div>
 </body></html>

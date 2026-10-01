@@ -21,11 +21,13 @@
   /* ── language ──────────────────────────────────────────────────────────── */
 
   var STORE = 'kktex-lang';
-  var toggle = document.getElementById('langToggle');
+  var LANG_BUTTONS = '.lang [data-lang]';
 
   function applyLang(lang) {
     root.lang = lang;
-    if (toggle) toggle.textContent = lang === 'ja' ? 'EN' : 'JA';
+    each(LANG_BUTTONS, function (b) {
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === lang));
+    });
     scan(); // the switch may have brought elements into layout for the first time
   }
 
@@ -33,13 +35,14 @@
   try { saved = localStorage.getItem(STORE); } catch (e) { /* private mode */ }
   applyLang(saved === 'en' || saved === 'ja' ? saved : 'ja');
 
-  if (toggle) {
-    toggle.addEventListener('click', function () {
-      var next = root.lang === 'ja' ? 'en' : 'ja';
+  each(LANG_BUTTONS, function (b) {
+    b.addEventListener('click', function () {
+      var next = b.getAttribute('data-lang');
+      if (next === root.lang) return;
       applyLang(next);
       try { localStorage.setItem(STORE, next); } catch (e) { /* private mode */ }
     });
-  }
+  });
 
   /* ── scroll progress bar ───────────────────────────────────────────────── */
 
@@ -89,6 +92,14 @@
     el.style.transitionDelay = delay + 'ms';
     el.style.opacity = '1';
     el.style.transform = 'none';
+    /* Once it has settled, hand the element back to the stylesheet. Left in
+       place, the inline transform and transition would override the cards'
+       own hover lift and colour fades. */
+    setTimeout(function () {
+      ['opacity', 'transform', 'transition', 'transition-delay'].forEach(function (p) {
+        el.style.removeProperty(p);
+      });
+    }, delay + 950);
   }
 
   /* Idempotent: every run reveals whatever is on screen right now — armed or

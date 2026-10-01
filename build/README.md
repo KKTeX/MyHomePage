@@ -1,93 +1,76 @@
 # build/
 
-`public/` is generated from the Claude Design canvas export, not hand-edited.
-When a new export arrives, regenerate rather than patching `public/index.html`.
+Sources for the images in `public/uploads/`. The page itself is not built:
+`public/index.html`, `public/style.css` and `public/site.js` are edited by hand.
 
-## Regenerating
+Until 2026-09-27 the page was generated from a Claude Design canvas export by
+`convert.py` + `assemble.py`, with `head.css` layered on top. That export is no
+longer on disk, and the page has since been redesigned in the claude.com idiom
+(see the header comment in `public/style.css` for the palette and the typeface
+substitutions), so those scripts were removed. They are in git history before
+that date if the old design is ever wanted back.
 
-Unpack the export (`design_handoff_kktex_portfolio/`) somewhere, then:
+## Product card images
+
+`cards/*.html` compose the three images on the Products section. Each is a flat
+plate in one of the page's palette colours with the product's own current UI or
+output laid on it. The only drawn element is the request bubble on the MCP
+card.
+
+| card | plate | source in `assets/` | where the source came from |
+|---|---|---|---|
+| `tex64.html` | oat `#E3DACC` | `cards/tex64-app.png` | `https://tex64.com/marketing/tex64-spectral-app-clean.png` |
+| `evolton.html` | cactus `#BCD1CA` | `cards/evolton-answer.png`, `cards/evolton-bank.png` | `https://evolton.jp/home-todai-exam-prep-template.png`, `/home-problem-bank.png` |
+| `mcp.html` | clay `#D97757` | `mcp/sample-{cover,body,exercise}.png` | `https://tex64.com/mcp/sample-{cover,body,exercise}.png` |
+
+All fetched 2026-09-27.
+
+`mcp.html` is 1200x960 rather than 1200x800: it fills the image half of the
+page's featured card, which sits near 5:4 on desktop. Its speech bubble is the
+first starter prompt the ChatGPT plugin is published with, and the three pages
+are the samples tex64.com publishes for that request — keep the two matched if
+either changes.
+
+To re-render one (`mcp` needs `--window-size=1200,960`):
 
 ```
-python3 build/convert.py "<export>/KKTeX Portfolio v2.dc.html" build/body.html
-python3 build/assemble.py
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless \
+  --allow-file-access-from-files --virtual-time-budget=8000 \
+  --force-device-scale-factor=2 --screenshot=card.png --window-size=1200,800 \
+  "file://$PWD/build/cards/tex64.html"
+sips -s format jpeg -s formatOptions 86 -Z 1200 card.png \
+  --out public/uploads/tex64-card.jpg
 ```
 
-`convert.py` strips the design-canvas runtime and rewrites its constructs into
-plain HTML, writing three files: `body.html` plus `body.html.style` and
-`body.html.hover` alongside it. `assemble.py` reads all three, wraps them in the
-real `<head>` and writes `public/index.html`. None of the three are committed,
-so `assemble.py` cannot be run until `convert.py` has been. Both assert on every substitution they expect to make, so
-a canvas export whose structure has drifted fails loudly instead of silently
-producing a broken page.
+Output names: `tex64-card.jpg`, `evolton-card.jpg`, `tex64-mcp-card.jpg`. Render at 2x and let `sips -Z 1200` downsample; at 1x the
+text inside the screenshots goes to mush. `--allow-file-access-from-files` is
+what lets the page load the images beside it.
 
-| prototype construct | becomes |
-|---|---|
-| `<sc-if value="{{ isJa }}">` | `data-l="ja"` on each child; CSS picks the language |
-| `style-hover="…"` | a real `:hover` rule (`.hv1`…`.hv7`) |
-| `ref="{{ barRef }}"` | `id="bar"`, driven by `public/site.js` |
-| `onClick="{{ toggleLang }}"` | `id="langToggle"` |
-| `{{ typed }}` | `#typed`, holding the full source so it survives no-JS |
+## Social card
 
-Both languages are always in the DOM and CSS hides the inactive one. Nothing is
-added or removed on a language switch, so a reveal cannot be stranded mid-
-animation — the failure the handoff notes warn about.
+`og.html` is the 1200x630 Open Graph / Twitter image:
 
-## Hand-maintained files
+```
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless \
+  --virtual-time-budget=8000 --force-device-scale-factor=2 \
+  --screenshot=og.png --window-size=1200,630 "file://$PWD/build/og.html"
+sips -s format jpeg -s formatOptions 88 -Z 1200 og.png --out public/uploads/og.jpg
+```
 
-- `build/head.css` — language switching, hover rules, typefaces, page gutter,
-  responsive overrides. The design's own values stay in inline styles, so these
-  use `!important` and select on inline-style substrings (`[style*="…"]`) where
-  a type role has no class of its own.
-- `build/assemble.py` — the `<head>`: meta, Open Graph, the font link, the
-  JSON-LD, and the Google Search Console verification tag. **That verification
-  tag must survive any regeneration** — removing it un-verifies the Search
-  Console property. See the root [README](../README.md#do-not-remove).
-- `public/site.js` — language toggle, progress bar, typewriter, scroll reveals.
-- `build/og.html` — source for the 1200x630 social card. To re-render:
-  ```
-  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless \
-    --screenshot=og.png --window-size=1200,630 "file://$PWD/build/og.html"
-  sips -s format jpeg -s formatOptions 88 og.png --out public/uploads/og.jpg
-  ```
-- `build/mcp-card.html` — source for the 1200x800 TeX64 MCP card image. It fans
-  the three pages in `build/assets/mcp/`, which are the samples the MCP page
-  itself publishes (`https://tex64.com/mcp/sample-{cover,body,exercise}.png`,
-  fetched 2026-08-23) — a B5 lecture note the server typeset. To re-render:
-  ```
-  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless \
-    --force-device-scale-factor=2 --screenshot=mcp.png --window-size=1200,800 \
-    "file://$PWD/build/mcp-card.html"
-  sips -s format jpeg -s formatOptions 92 -Z 1200 mcp.png \
-    --out public/uploads/tex64-mcp-og.jpg
-  ```
-  Render at 2x and let `sips -Z 1200` downsample; at 1x the page text in the
-  fanned pages goes to mush.
+## Facts on the page that come from elsewhere
 
-## Images
-
-Product cards hot-linked other sites' OG images in the prototype; they are
-self-hosted in `public/uploads/` now. Re-fetch and re-compress with
-`sips -s format jpeg -s formatOptions 80 -Z 1200 <src> --out <dest>`.
-
-The TeX64 MCP card is the exception: it has no OG image worth reusing — the MCP
-page's own `og:image` is just the TeX64 one, already on the card next to it —
-so it gets a composed image instead. See `build/mcp-card.html` above.
-
-## Edits that are not in the canvas export
-
-`public/index.html` carries three body changes made by hand after the last
-export, so regenerating from that export silently reverts them:
-
-- the TeX64 MCP card's image. The export drew a CSS terminal mock
-  (`$ curl mcp.tex64.com`) in the image slot; it is now an `<img>` matching the
-  other three product cards.
-- the 8th Packages cell. The export left a vermilion `typeset sample /
-  組版サンプル` placeholder there; it is now the **paracolrule** card
-  (CTAN, 2026-08-22), which fills the 4x2 grid exactly.
-- the package count. Seven became eight in the two hero paragraphs, the `08`
-  hero stat, the Packages heading, the About paragraphs and the 2025-26
-  timeline row — and in `assemble.py`'s `DESC`/`DESC_EN`/JSON-LD and in
-  `og.html`, which are regenerated from source and so are safe.
-
-When the next export arrives, re-apply the first two before running
-`assemble.py`, and check the counts against `ctan.org/author/kktex`.
+- **Package count** (eight): the hero paragraph, the `08` stat, the Packages
+  heading, About, the 2025–26 timeline row, `og.html`, and the `<meta>`
+  descriptions and JSON-LD in the `<head>`. Check against
+  `ctan.org/author/kktex`.
+- **Product count** (three): the `3` stat in the hero counts the Fermion
+  products the page shows — TeX64, TeX64 MCP, Evolton. MathHover was taken off
+  the page on 2026-09-27 at the author's request; keep the stat matched to the
+  cards rather than to Fermion's full lineup.
+- **TeX64 MCP in ChatGPT**: published in the ChatGPT plugin directory
+  (Education & Research) at
+  `https://chatgpt.com/plugins/plugin_asdk_app_6a8abcc3f22c819196d21cf6e44e3a3b`.
+  The Claude plugin is on GitHub (`Fermion-company/tex64-claude-plugin`) and
+  its Anthropic directory listing was under review as of 2026-09-27; update the
+  featured card's "Claude" row when that changes. The record of both is in the
+  TeX64-mcp repo, `plugins/tex64/submission/`.
